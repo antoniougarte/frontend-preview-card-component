@@ -1,28 +1,46 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div v-for="(category, index) in categories" :key="index">
+      <CardComponent
+      :title="category.title"
+      :icon="category.icon"
+      :text="category.text"
+      :bgColor="category.bgColor"
+      />
+    </div>
+    <img :src="iconLuxury" alt="">
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import CardComponent from '@/components/CardComponent/CardComponent.vue'
+import { categories } from "@/core/category.js";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    CardComponent,
+  },
+  data(){
+    return{
+      categories: categories,
+    }
   }
 }
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  
+  margin: 3rem;
+}
+@media (min-width: 992px) { 
+  #app {
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 950px;
+}
 }
 </style>
